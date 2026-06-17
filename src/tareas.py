@@ -1,3 +1,12 @@
+from src.validaciones import (
+    pedir_texto,
+    pedir_entero_en_rango,
+    pedir_fecha,
+    pedir_porcentaje,
+    pedir_nota
+)
+
+
 def registrar_tarea(tareas, materias):
     """
     Permite cargar una nueva actividad académica.
@@ -5,15 +14,15 @@ def registrar_tarea(tareas, materias):
     La actividad puede ser una tarea, parcial o entrega. Se guarda como
     un diccionario dentro de la lista de tareas.
 
-    Parameters
-    ----------
+  Parametros:
+    
     tareas : list
         Lista donde se guardan las actividades académicas.
     materias : list
         Lista de materias cargadas previamente.
 
-    Returns
-    -------
+    Returns:
+  
     list
         Lista de tareas actualizada.
     """
@@ -31,78 +40,33 @@ def registrar_tarea(tareas, materias):
     for numero, materia in enumerate(materias, start=1):
         print(f"{numero}. {materia}")
 
-    while True:
-        try:
-            opcion_materia = int(input("Seleccione el número de la materia: "))
+    opcion_materia = pedir_entero_en_rango(
+        "Seleccione el número de la materia: ",
+        1,
+        len(materias)
+    )
 
-            if 1 <= opcion_materia <= len(materias):
-                materia_elegida = materias[opcion_materia - 1]
-                break
-            else:
-                print("La opción ingresada no corresponde a una materia existente.")
+    materia_elegida = materias[opcion_materia - 1]
 
-        except ValueError:
-            print("Debe ingresar un número válido.")
+    tipo = pedir_tipo_actividad()
 
-    while True:
-        tipo = input("Ingrese el tipo de actividad (tarea/parcial/entrega): ").strip().lower()
+    descripcion = pedir_texto("Ingrese una descripción de la actividad: ")
 
-        if tipo in ["tarea", "parcial", "entrega"]:
-            break
-        else:
-            print("El tipo debe ser: tarea, parcial o entrega.")
+    fecha_limite = pedir_fecha("Ingrese la fecha límite (AAAA-MM-DD): ")
 
-    while True:
-        descripcion = input("Ingrese una descripción de la actividad: ").strip()
+    dificultad = pedir_entero_en_rango(
+        "Ingrese la dificultad del 1 al 5: ",
+        1,
+        5
+    )
 
-        if descripcion != "":
-            break
-        else:
-            print("La descripción no puede estar vacía.")
+    importancia = pedir_entero_en_rango(
+        "Ingrese la importancia del 1 al 5: ",
+        1,
+        5
+    )
 
-    while True:
-        fecha_limite = input("Ingrese la fecha límite (AAAA-MM-DD): ").strip()
-
-        if fecha_limite != "":
-            break
-        else:
-            print("La fecha límite no puede estar vacía.")
-
-    while True:
-        try:
-            dificultad = int(input("Ingrese la dificultad del 1 al 5: "))
-
-            if 1 <= dificultad <= 5:
-                break
-            else:
-                print("La dificultad debe estar entre 1 y 5.")
-
-        except ValueError:
-            print("Debe ingresar un número válido.")
-
-    while True:
-        try:
-            importancia = int(input("Ingrese la importancia del 1 al 5: "))
-
-            if 1 <= importancia <= 5:
-                break
-            else:
-                print("La importancia debe estar entre 1 y 5.")
-
-        except ValueError:
-            print("Debe ingresar un número válido.")
-
-    while True:
-        try:
-            avance = int(input("Ingrese el porcentaje de avance entre 0 y 100: "))
-
-            if 0 <= avance <= 100:
-                break
-            else:
-                print("El avance debe estar entre 0 y 100.")
-
-        except ValueError:
-            print("Debe ingresar un número válido.")
+    avance = pedir_porcentaje("Ingrese el porcentaje de avance entre 0 y 100: ")
 
     if avance == 100:
         estado = "Completada"
@@ -129,12 +93,34 @@ def registrar_tarea(tareas, materias):
     return tareas
 
 
+def pedir_tipo_actividad():
+    """
+    Solicita el tipo de actividad y verifica que sea válido.
+
+    Los tipos permitidos son: tarea, parcial o entrega.
+
+    Returns
+ 
+    str
+        Tipo de actividad válido.
+    """
+
+    while True:
+        tipo = pedir_texto("Ingrese el tipo de actividad (tarea/parcial/entrega): ")
+        tipo = tipo.lower()
+
+        if tipo in ["tarea", "parcial", "entrega"]:
+            return tipo
+        else:
+            print("El tipo debe ser: tarea, parcial o entrega.")
+
+
 def mostrar_tareas_pendientes(tareas):
     """
     Muestra las actividades que todavía no fueron completadas.
 
-    Parameters
-    ----------
+    Parametros: 
+    
     tareas : list
         Lista de actividades académicas.
     """
@@ -154,24 +140,15 @@ def mostrar_tareas_pendientes(tareas):
         print("No hay tareas pendientes.")
     else:
         for tarea in pendientes:
-            print(f"ID: {tarea['id']}")
-            print(f"Materia: {tarea['materia']}")
-            print(f"Tipo: {tarea['tipo']}")
-            print(f"Descripción: {tarea['descripcion']}")
-            print(f"Fecha límite: {tarea['fecha_limite']}")
-            print(f"Dificultad: {tarea['dificultad']}")
-            print(f"Importancia: {tarea['importancia']}")
-            print(f"Avance: {tarea['avance']}%")
-            print(f"Estado: {tarea['estado']}")
-            print("---------------------------------------------")
+            imprimir_tarea(tarea)
 
 
 def mostrar_tareas_completadas(tareas):
     """
     Muestra las actividades que ya fueron finalizadas.
 
-    Parameters
-    ----------
+     Parametros:
+    
     tareas : list
         Lista de actividades académicas.
     """
@@ -191,15 +168,7 @@ def mostrar_tareas_completadas(tareas):
         print("No hay tareas completadas.")
     else:
         for tarea in completadas:
-            print(f"ID: {tarea['id']}")
-            print(f"Materia: {tarea['materia']}")
-            print(f"Tipo: {tarea['tipo']}")
-            print(f"Descripción: {tarea['descripcion']}")
-            print(f"Fecha límite: {tarea['fecha_limite']}")
-            print(f"Avance: {tarea['avance']}%")
-            print(f"Nota: {tarea['nota']}")
-            print(f"Estado: {tarea['estado']}")
-            print("---------------------------------------------")
+            imprimir_tarea(tarea)
 
 
 def actualizar_avance(tareas):
@@ -209,13 +178,13 @@ def actualizar_avance(tareas):
     Si el avance nuevo es 100, la tarea pasa automáticamente a estado
     'Completada'. Si el avance es menor a 100, queda como 'Pendiente'.
 
-    Parameters
-    ----------
+    Parametros:
+    
     tareas : list
         Lista de actividades académicas.
 
-    Returns
-    -------
+    Returns:
+    
     list
         Lista de tareas actualizada.
     """
@@ -229,39 +198,13 @@ def actualizar_avance(tareas):
         print("No hay tareas cargadas.")
         return tareas
 
-    for tarea in tareas:
-        print(f"{tarea['id']}. {tarea['materia']} - {tarea['descripcion']} - Avance: {tarea['avance']}%")
+    mostrar_resumen_tareas(tareas)
 
-    while True:
-        try:
-            id_tarea = int(input("Ingrese el ID de la tarea que desea actualizar: "))
+    tarea_encontrada = seleccionar_tarea_por_id(tareas)
 
-            tarea_encontrada = None
-
-            for tarea in tareas:
-                if tarea["id"] == id_tarea:
-                    tarea_encontrada = tarea
-                    break
-
-            if tarea_encontrada is not None:
-                break
-            else:
-                print("No existe una tarea con ese ID.")
-
-        except ValueError:
-            print("Debe ingresar un número válido.")
-
-    while True:
-        try:
-            nuevo_avance = int(input("Ingrese el nuevo porcentaje de avance entre 0 y 100: "))
-
-            if 0 <= nuevo_avance <= 100:
-                break
-            else:
-                print("El avance debe estar entre 0 y 100.")
-
-        except ValueError:
-            print("Debe ingresar un número válido.")
+    nuevo_avance = pedir_porcentaje(
+        "Ingrese el nuevo porcentaje de avance entre 0 y 100: "
+    )
 
     tarea_encontrada["avance"] = nuevo_avance
 
@@ -281,13 +224,13 @@ def marcar_tarea_completada(tareas):
 
     También modifica el avance de la tarea a 100%.
 
-    Parameters
-    ----------
+    Parametros:
+    -
     tareas : list
         Lista de actividades académicas.
 
     Returns
-    -------
+    
     list
         Lista de tareas actualizada.
     """
@@ -301,27 +244,9 @@ def marcar_tarea_completada(tareas):
         print("No hay tareas cargadas.")
         return tareas
 
-    for tarea in tareas:
-        print(f"{tarea['id']}. {tarea['materia']} - {tarea['descripcion']} - Estado: {tarea['estado']}")
+    mostrar_resumen_tareas(tareas)
 
-    while True:
-        try:
-            id_tarea = int(input("Ingrese el ID de la tarea que desea marcar como completada: "))
-
-            tarea_encontrada = None
-
-            for tarea in tareas:
-                if tarea["id"] == id_tarea:
-                    tarea_encontrada = tarea
-                    break
-
-            if tarea_encontrada is not None:
-                break
-            else:
-                print("No existe una tarea con ese ID.")
-
-        except ValueError:
-            print("Debe ingresar un número válido.")
+    tarea_encontrada = seleccionar_tarea_por_id(tareas)
 
     tarea_encontrada["avance"] = 100
     tarea_encontrada["estado"] = "Completada"
@@ -335,13 +260,13 @@ def cargar_nota(tareas):
     """
     Permite registrar una nota obtenida en una actividad académica.
 
-    Parameters
-    ----------
+    Parametros:
+    
     tareas : list
         Lista de actividades académicas.
 
-    Returns
-    -------
+    Returns:
+    
     list
         Lista de tareas actualizada.
     """
@@ -355,42 +280,85 @@ def cargar_nota(tareas):
         print("No hay tareas cargadas.")
         return tareas
 
-    for tarea in tareas:
-        print(f"{tarea['id']}. {tarea['materia']} - {tarea['descripcion']} - Nota actual: {tarea['nota']}")
+    mostrar_resumen_tareas(tareas)
 
-    while True:
-        try:
-            id_tarea = int(input("Ingrese el ID de la tarea a la que desea cargarle una nota: "))
+    tarea_encontrada = seleccionar_tarea_por_id(tareas)
 
-            tarea_encontrada = None
-
-            for tarea in tareas:
-                if tarea["id"] == id_tarea:
-                    tarea_encontrada = tarea
-                    break
-
-            if tarea_encontrada is not None:
-                break
-            else:
-                print("No existe una tarea con ese ID.")
-
-        except ValueError:
-            print("Debe ingresar un número válido.")
-
-    while True:
-        try:
-            nota = float(input("Ingrese la nota obtenida entre 0 y 10: "))
-
-            if 0 <= nota <= 10:
-                break
-            else:
-                print("La nota debe estar entre 0 y 10.")
-
-        except ValueError:
-            print("Debe ingresar un número válido.")
+    nota = pedir_nota("Ingrese la nota obtenida entre 0 y 10: ")
 
     tarea_encontrada["nota"] = nota
 
     print("Nota cargada exitosamente.")
 
     return tareas
+
+
+def seleccionar_tarea_por_id(tareas):
+    """
+    Solicita al usuario un ID de tarea y devuelve la tarea correspondiente.
+
+    Parametros:
+    
+    tareas : list
+        Lista de actividades académicas.
+
+    Returns:
+    
+    dict
+        Tarea encontrada.
+    """
+
+    while True:
+        id_tarea = pedir_entero_en_rango(
+            "Ingrese el ID de la tarea: ",
+            1,
+            len(tareas)
+        )
+
+        for tarea in tareas:
+            if tarea["id"] == id_tarea:
+                return tarea
+
+        print("No existe una tarea con ese ID.")
+
+
+def mostrar_resumen_tareas(tareas):
+    """
+    Muestra un resumen breve de todas las tareas cargadas.
+
+    Parametros:
+    
+    tareas : list
+        Lista de actividades académicas.
+    """
+
+    for tarea in tareas:
+        print(
+            f"{tarea['id']}. {tarea['materia']} - "
+            f"{tarea['descripcion']} - "
+            f"Avance: {tarea['avance']}% - "
+            f"Estado: {tarea['estado']}"
+        )
+
+
+def imprimir_tarea(tarea):
+    """
+    Imprime en pantalla la información completa de una tarea.
+
+    Parametros:
+    
+    tarea : dict
+        Diccionario con los datos de una actividad académica.
+    """
+
+    print(f"ID: {tarea['id']}")
+    print(f"Materia: {tarea['materia']}")
+    print(f"Tipo: {tarea['tipo']}")
+    print(f"Descripción: {tarea['descripcion']}")
+    print(f"Fecha límite: {tarea['fecha_limite']}")
+    print(f"Dificultad: {tarea['dificultad']}")
+    print(f"Importancia: {tarea['importancia']}")
+    print(f"Avance: {tarea['avance']}%")
+    print(f"Nota: {tarea['nota']}")
+    print(f"Estado: {tarea['estado']}")
+    print("---------------------------------------------")
