@@ -91,80 +91,80 @@ diagramas/
 Contiene el menú principal del programa. Desde este archivo se llaman las funciones de los distintos módulos del sistema.
 
 Funciones principales:
-mostrar_menu(): muestra las opciones disponibles.
-main(): controla el flujo principal del programa.
+- mostrar_menu(): muestra las opciones disponibles.
+- main(): controla el flujo principal del programa.
 
 ### src/materias.py
 Contiene las funciones relacionadas con la carga y consulta de materias.
 
 Funciones principales:
-cargar_materia(): permite ingresar una nueva materia.
-mostrar_materias(): muestra las materias cargadas.
+- cargar_materia(): permite ingresar una nueva materia.
+- mostrar_materias(): muestra las materias cargadas.
 
 ### src/tareas.py
 Contiene las funciones relacionadas con las actividades académicas.
 
 Funciones principales:
-registrar_tarea(): permite cargar una nueva tarea, parcial o entrega.
-mostrar_tareas_pendientes(): muestra las actividades que todavía no fueron completadas.
-mostrar_tareas_completadas(): muestra las actividades finalizadas.
-actualizar_avance(): permite modificar el porcentaje de avance de una actividad.
-marcar_tarea_completada(): cambia el estado de una actividad a completada.
-cargar_nota(): permite registrar una nota obtenida.
+- registrar_tarea(): permite cargar una nueva tarea, parcial o entrega.
+- mostrar_tareas_pendientes(): muestra las actividades que todavía no fueron completadas.
+- mostrar_tareas_completadas(): muestra las actividades finalizadas.
+- actualizar_avance(): permite modificar el porcentaje de avance de una actividad.
+- marcar_tarea_completada(): cambia el estado de una actividad a completada.
+- cargar_nota(): permite registrar una nota obtenida.
 
 ### src/validaciones.py
 Contiene funciones para validar los datos ingresados por el usuario.
 
 Funciones principales:
-pedir_texto(): solicita texto y verifica que no esté vacío.
-pedir_entero(): solicita un número entero válido.
-validar_fecha(): verifica que la fecha tenga el formato correcto.
-validar_porcentaje(): verifica que el avance esté entre 0 y 100.
-validar_nota(): verifica que la nota esté dentro del rango permitido.
+- pedir_texto(): solicita texto y verifica que no esté vacío.
+- pedir_entero(): solicita un número entero válido.
+- validar_fecha(): verifica que la fecha tenga el formato correcto.
+- validar_porcentaje(): verifica que el avance esté entre 0 y 100.
+- validar_nota(): verifica que la nota esté dentro del rango permitido.
 
 ### src/archivos.py
 Contiene funciones para leer y guardar información en archivos CSV.
 
 Funciones principales:
 
-leer_materias(): lee las materias guardadas.
-guardar_materia(): guarda una nueva materia.
-leer_tareas(): lee las tareas guardadas.
-guardar_tarea(): guarda una nueva tarea.
-sobrescribir_tareas(): actualiza el archivo de tareas luego de modificar datos.
+- leer_materias(): lee las materias guardadas.
+- guardar_materia(): guarda una nueva materia.
+- leer_tareas(): lee las tareas guardadas.
+- guardar_tarea(): guarda una nueva tarea.
+- sobrescribir_tareas(): actualiza el archivo de tareas luego de modificar datos.
 
 ### src/calculos.py
 Contiene la lógica principal del sistema.
 
 Funciones principales:
 
-calcular_dias_restantes(): calcula cuántos días faltan para la fecha límite.
-calcular_prioridad(): asigna una prioridad a cada actividad según fecha, dificultad, importancia y avance.
-calcular_riesgo_atraso(): detecta si una actividad tiene riesgo bajo, medio o alto.
-calcular_avance_esperado(): estima cuánto debería haber avanzado el usuario según el tiempo disponible.
-calcular_promedio_por_materia(): calcula el promedio de notas por materia.
-calcular_promedio_general(): calcula el promedio general del usuario.
+- calcular_dias_restantes(): calcula cuántos días faltan para la fecha límite.
+- calcular_prioridad(): asigna una prioridad a cada actividad según fecha, dificultad, importancia y avance.
+- calcular_riesgo_atraso(): detecta si una actividad tiene riesgo bajo, medio o alto.
+- calcular_avance_esperado(): estima cuánto debería haber avanzado el usuario según el tiempo disponible.
+- calcular_promedio_por_materia(): calcula el promedio de notas por materia.
+- calcular_promedio_general(): calcula el promedio general del usuario.
 
 ### src/reportes.py
 Contiene funciones para mostrar resultados y recomendaciones.
 
 Funciones principales:
 
-mostrar_alertas_proximas(): muestra actividades que vencen pronto.
-mostrar_recomendaciones(): recomienda qué estudiar primero.
-mostrar_metricas_generales(): muestra un resumen del estado académico.
-mostrar_tareas_por_prioridad(): muestra las actividades ordenadas según prioridad.
+- mostrar_alertas_proximas(): muestra actividades que vencen pronto.
+- mostrar_recomendaciones(): recomienda qué estudiar primero.
+- mostrar_metricas_generales(): muestra un resumen del estado académico.
+- mostrar_tareas_por_prioridad(): muestra las actividades ordenadas según prioridad.
 
 ### src/graficos.py
 Contiene funciones para generar visualizaciones.
 
 Funciones principales:
 
-grafico_tareas_por_materia(): genera un gráfico con la cantidad de tareas por materia.
-grafico_estado_tareas(): muestra la proporción de tareas pendientes y completadas.
-grafico_prioridades(): muestra la cantidad de actividades según prioridad alta, media o baja.
-grafico_promedio_por_materia(): genera un gráfico de promedios.
-generar_graficos(): ejecuta la generación de gráficos disponibles.
+- grafico_tareas_por_materia(): genera un gráfico con la cantidad de tareas por materia.
+- grafico_estado_tareas(): muestra la proporción de tareas pendientes y completadas.
+- grafico_prioridades(): muestra la cantidad de actividades según prioridad alta, media o baja.
+- grafico_promedio_por_materia(): genera un gráfico de promedios.
+- generar_graficos(): ejecuta la generación de gráficos disponibles.
 
 ## Resultados, salidas y métricas generadas
 ### Salidas por consola
