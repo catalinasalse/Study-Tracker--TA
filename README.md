@@ -67,26 +67,24 @@ os: para verificar la existencia de carpetas o archivos.
 
 ## Estructura del repositorio
 TA/
-│
-├── main.py
-├── README.md
-├── requirements.txt
-│
-├── src/
-│   ├── materias.py
-│   ├── tareas.py
-│   ├── validaciones.py
-│   ├── archivos.py
-│   ├── calculos.py
-│   ├── reportes.py
-│   └── graficos.py
-│
-├── archivos/
-│   ├── materias.csv
-│   └── tareas.csv
-│
-└── diagramas/
-    └── diagrama_general.png
+- main.py
+- README.md
+- requirements.txt
+src/
+- materias.py
+- tareas.py
+- validaciones.py
+- archivos.py
+- calculos.py
+- reportes.py
+- graficos.py
+
+archivos/
+- materias.csv
+- tareas.csv
+
+diagramas/
+- diagrama_general.png
     
 ## Explicación breve de las funciones principales
 ### main.py
