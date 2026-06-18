@@ -99,6 +99,13 @@ archivos/
 
 diagramas/
 - diagrama_general.png
+- diagrama materias.png
+- diagrama tareas.png
+- diagrama archivos.png
+- diagrama validaciones.png
+- diagrama calculos.png
+- diagrama graficos.png
+- diagrama reportes.png
     
 ## Explicación breve de las funciones principales
 ### main.py
