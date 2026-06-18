@@ -33,7 +33,21 @@ A partir de los datos cargados, el programa calcula distintos indicadores, como 
 - Generar gráficos sobre el estado académico del usuario.
 
 ## Division de tareas entre integrantes
-A COMPLETAR!!!!!
+### Belen Blaksley
+- crear archivos dentro del repositorio
+- codigo de materias.py
+- codigo de tareas.py
+- codigo de reportes.py
+### Catalina Salse
+- codigo de archivos.py
+- codigo de graficos.py
+- diagrama general
+- archivo requirements.txt
+### Maia Uranga
+- README
+- codigo de validaciones.py
+- codigo de calculos.py
+- codido de main.py
 
 ## Fuente de datos
 El proyecto no utiliza un dataset externo. La información es ingresada manualmente por el usuario mediante el menú interactivo del programa. Los datos se guardan localmente en archivos CSV dentro de la carpeta `archivos/`.
