@@ -71,7 +71,7 @@ Cada actividad puede incluir información como:
 - Fecha de carga.
 
 ## Instrucciones para ejecutar el programa
-Puede ejecutarse directamente desde Spyder abriendo el archivo main.py y presionando “Run”.
+Puede ejecutarse directamente desde Spyder abriendo el archivo main.py y presionando “Run”. Tener instaladas las librerias de matplotlib y pandas.
 
 ## Librerias utilizadas
 - pandas: para leer, guardar y procesar datos en formato tabular.
