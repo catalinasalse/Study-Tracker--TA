@@ -2,13 +2,13 @@ def cargar_materia(materias):
     """
     Permite ingresar una nueva materia y agregarla a la lista de materias.
 
-    Parameters
-    ----------
+    Parametros:
+    
     materias : list
         Lista donde se guardan las materias cargadas.
 
-    Returns
-    -------
+    Returns:
+    
     list
         Lista actualizada con la nueva materia.
     """
@@ -23,8 +23,14 @@ def cargar_materia(materias):
     if nombre_materia == "":
         print("El nombre de la materia no puede estar vacío.")
         return materias
+    
+    
+    existe = False
+    for materia in materias:
+        if materia.lower() == nombre_materia.lower():
+            existe = True
 
-    if nombre_materia.lower() in [materia.lower() for materia in materias]:
+    if existe:
         print("Esa materia ya fue cargada anteriormente.")
         return materias
 
@@ -38,8 +44,8 @@ def mostrar_materias(materias):
     """
     Muestra las materias cargadas.
 
-    Parameters
-    ----------
+    Parametros:
+    
     materias : list
         Lista de materias cargadas.
     """
@@ -52,5 +58,5 @@ def mostrar_materias(materias):
     if len(materias) == 0:
         print("Todavía no hay materias cargadas.")
     else:
-        for numero, materia in enumerate(materias, start=1):
-            print(f"{numero}. {materia}")
+       for pos in range(len(materias)):
+            print(f"{pos + 1}. {materias[pos]}")
