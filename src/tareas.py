@@ -6,6 +6,8 @@ from src.validaciones import (
     pedir_nota
 )
 
+from src.materias import mostrar_materias
+
 
 def registrar_tarea(tareas, materias):
     """
@@ -37,14 +39,9 @@ def registrar_tarea(tareas, materias):
         return tareas
 
     print("Materias disponibles:")
-    for numero, materia in enumerate(materias, start=1):
-        print(f"{numero}. {materia}")
+    mostrar_materias(materias)
 
-    opcion_materia = pedir_entero_en_rango(
-        "Seleccione el número de la materia: ",
-        1,
-        len(materias)
-    )
+    opcion_materia = pedir_entero_en_rango("Seleccione el número de la materia: ",1,len(materias))
 
     materia_elegida = materias[opcion_materia - 1]
 
@@ -54,20 +51,12 @@ def registrar_tarea(tareas, materias):
 
     fecha_limite = pedir_fecha("Ingrese la fecha límite (AAAA-MM-DD): ")
 
-    dificultad = pedir_entero_en_rango(
-        "Ingrese la dificultad del 1 al 5: ",
-        1,
-        5
-    )
+    dificultad = pedir_entero_en_rango("Ingrese la dificultad del 1 al 5: ",1,5)
 
-    importancia = pedir_entero_en_rango(
-        "Ingrese la importancia del 1 al 5: ",
-        1,
-        5
-    )
+    importancia = pedir_entero_en_rango("Ingrese la importancia del 1 al 5: ",1,5)
 
     avance = pedir_porcentaje("Ingrese el porcentaje de avance entre 0 y 100: ")
-
+    
     if avance == 100:
         estado = "Completada"
     else:
@@ -115,7 +104,7 @@ def pedir_tipo_actividad():
             print("El tipo debe ser: tarea, parcial o entrega.")
 
 
-def mostrar_tareas_pendientes(tareas):
+def mostrar_tareas_segun_estado(tareas, estado_a_mostrar):
     """
     Muestra las actividades que todavía no fueron completadas.
 
@@ -127,49 +116,21 @@ def mostrar_tareas_pendientes(tareas):
 
     print()
     print("=============================================")
-    print("             TAREAS PENDIENTES               ")
+    print("             TAREAS {estado_a_mostrar.upper()}               ")
     print("=============================================")
 
-    pendientes = []
+    tareas_filtradas = []
 
     for tarea in tareas:
-        if tarea["estado"] != "Completada":
-            pendientes.append(tarea)
+        if tarea["estado"] == estado_a_mostrar:
+            tareas_filtradas.append(tarea)
 
-    if len(pendientes) == 0:
-        print("No hay tareas pendientes.")
+    if len(tareas_filtradas) == 0:
+        print(f"No hay tareas en el estado {estado_a_mostrar}.")
     else:
-        for tarea in pendientes:
+        for tarea in tareas_filtradas:
             imprimir_tarea(tarea)
-
-
-def mostrar_tareas_completadas(tareas):
-    """
-    Muestra las actividades que ya fueron finalizadas.
-
-     Parametros:
-    
-    tareas : list
-        Lista de actividades académicas.
-    """
-
-    print()
-    print("=============================================")
-    print("            TAREAS COMPLETADAS               ")
-    print("=============================================")
-
-    completadas = []
-
-    for tarea in tareas:
-        if tarea["estado"] == "Completada":
-            completadas.append(tarea)
-
-    if len(completadas) == 0:
-        print("No hay tareas completadas.")
-    else:
-        for tarea in completadas:
-            imprimir_tarea(tarea)
-
+            
 
 def actualizar_avance(tareas):
     """
@@ -202,9 +163,7 @@ def actualizar_avance(tareas):
 
     tarea_encontrada = seleccionar_tarea_por_id(tareas)
 
-    nuevo_avance = pedir_porcentaje(
-        "Ingrese el nuevo porcentaje de avance entre 0 y 100: "
-    )
+    nuevo_avance = pedir_porcentaje("Ingrese el nuevo porcentaje de avance entre 0 y 100: ")
 
     tarea_encontrada["avance"] = nuevo_avance
 
@@ -225,7 +184,7 @@ def marcar_tarea_completada(tareas):
     También modifica el avance de la tarea a 100%.
 
     Parametros:
-    -
+    
     tareas : list
         Lista de actividades académicas.
 
@@ -309,11 +268,7 @@ def seleccionar_tarea_por_id(tareas):
     """
 
     while True:
-        id_tarea = pedir_entero_en_rango(
-            "Ingrese el ID de la tarea: ",
-            1,
-            len(tareas)
-        )
+        id_tarea = pedir_entero_en_rango("Ingrese el ID de la tarea: ", 1,len(tareas))
 
         for tarea in tareas:
             if tarea["id"] == id_tarea:
@@ -333,12 +288,7 @@ def mostrar_resumen_tareas(tareas):
     """
 
     for tarea in tareas:
-        print(
-            f"{tarea['id']}. {tarea['materia']} - "
-            f"{tarea['descripcion']} - "
-            f"Avance: {tarea['avance']}% - "
-            f"Estado: {tarea['estado']}"
-        )
+       print(f"{tarea['id']}. {tarea['materia']} - {tarea['descripcion']} - Avance: {tarea['avance']}% - Estado: {tarea['estado']}")
 
 
 def imprimir_tarea(tarea):
