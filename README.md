@@ -74,10 +74,10 @@ Cada actividad puede incluir información como:
 Puede ejecutarse directamente desde Spyder abriendo el archivo main.py y presionando “Run”.
 
 ## Librerias utilizadas
-pandas: para leer, guardar y procesar datos en formato tabular.
-matplotlib: para generar gráficos.
-datetime: para trabajar con fechas, calcular días restantes y detectar actividades próximas.
-os: para verificar la existencia de carpetas o archivos.
+- pandas: para leer, guardar y procesar datos en formato tabular.
+- matplotlib: para generar gráficos.
+- datetime: para trabajar con fechas, calcular días restantes y detectar actividades próximas.
+- os: para verificar la existencia de carpetas o archivos.
 
 ## Estructura del repositorio
 TA/
