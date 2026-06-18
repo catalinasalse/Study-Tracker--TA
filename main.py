@@ -2,7 +2,8 @@ from src.archivos import (
     crear_archivos_si_no_existen,
     leer_materias,
     leer_tareas,
-    sobrescribir_tareas
+    sobrescribir_tareas,
+    sobrescribir_materias,
 )
 
 from src.materias import (
@@ -11,9 +12,8 @@ from src.materias import (
 )
 
 from src.tareas import (
-    registrar_tarea,
-    mostrar_tareas_pendientes,
-    mostrar_tareas_completadas,
+   registrar_tarea,
+    mostrar_tareas_segun_estado,
     actualizar_avance,
     marcar_tarea_completada,
     cargar_nota
@@ -110,6 +110,7 @@ def main():
 
         elif opcion == 1:
             materias = cargar_materia(materias)
+            sobrescribir_materias(materias)
 
         elif opcion == 2:
             mostrar_materias(materias)
@@ -119,10 +120,10 @@ def main():
             sobrescribir_tareas(tareas)
 
         elif opcion == 4:
-            mostrar_tareas_pendientes(tareas)
+            mostrar_tareas_segun_estado(tareas, 'Pendiente')
 
         elif opcion == 5:
-            mostrar_tareas_completadas(tareas)
+            mostrar_tareas_segun_estado(tareas, 'Completada')
 
         elif opcion == 6:
             tareas = actualizar_avance(tareas)
