@@ -35,18 +35,18 @@ A partir de los datos cargados, el programa calcula distintos indicadores, como 
 ## Division de tareas entre integrantes
 ### Belen Blaksley
 - crear archivos dentro del repositorio
-- codigo de materias.py
-- codigo de tareas.py
-- codigo de reportes.py
+- codigo/diagrama de materias.py
+- codigo/diagrama de tareas.py
+- codigo/diagrama de reportes.py
 ### Catalina Salse
-- codigo de archivos.py
-- codigo de graficos.py
+- codigo/diagrama de archivos.py
+- codigo/diagrama de graficos.py
 - diagrama general
 - archivo requirements.txt
 ### Maia Uranga
 - README
-- codigo de validaciones.py
-- codigo de calculos.py
+- codigo/diagrama de validaciones.py
+- codigo/diagrama de calculos.py
 - codido de main.py
 
 ## Fuente de datos
