@@ -143,6 +143,29 @@ def guardar_tarea(tarea):
     print("Tarea guardada correctamente.")
 
 
+def sobrescribir_materias(materias):
+    """
+    Actualiza el archivo materias.csv luego de modificar datos.
+
+    Se usa cuando se carga una nueva materia.
+
+    Parametros:
+    materia : list
+        Lista completa de materias actualizada.
+
+    Returns:
+    None
+    """
+
+    crear_archivos_si_no_existen()
+
+    df = pd.DataFrame(materias, columns=['materia'])
+    df.to_csv(RUTA_MATERIAS, index=False)
+
+    print("Archivo de materias actualizado correctamente.")
+
+
+
 def sobrescribir_tareas(tareas):
     """
     Actualiza el archivo tareas.csv luego de modificar datos.
@@ -159,7 +182,7 @@ def sobrescribir_tareas(tareas):
 
     crear_archivos_si_no_existen()
 
-    df = pd.DataFrame(tareas)
+    df = pd.DataFrame(tareas, columns=["id","materia","tipo","descripcion","fecha_limite","dificultad","importancia","avance","nota","estado"])
     df.to_csv(RUTA_TAREAS, index=False)
 
     print("Archivo de tareas actualizado correctamente.")
