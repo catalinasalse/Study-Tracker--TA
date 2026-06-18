@@ -52,23 +52,23 @@ def calcular_prioridad(tarea):
     puntaje = 0
 
     if dias_restantes < 0:
-        puntaje = puntaje + 4
+        puntaje += 4
     elif dias_restantes <= 2:
-        puntaje = puntaje + 3
+        puntaje += 3
     elif dias_restantes <= 7:
-        puntaje = puntaje + 2
+        puntaje += 2
     else:
-        puntaje = puntaje + 1
+        puntaje += 1
 
-    puntaje = puntaje + dificultad
-    puntaje = puntaje + importancia
+    puntaje += dificultad
+    puntaje += importancia
 
     if avance < 30:
-        puntaje = puntaje + 3
+        puntaje += 3
     elif avance < 70:
-        puntaje = puntaje + 2
+        puntaje += 2
     else:
-        puntaje = puntaje + 1
+        puntaje += 1
 
     if puntaje >= 12:
         return "Alta"
@@ -204,7 +204,7 @@ def calcular_promedio_por_materia(tareas):
         materia = tarea["materia"]
         nota = tarea["nota"]
 
-        if nota is not None:
+        if nota != None:
             if materia not in notas_por_materia:
                 notas_por_materia[materia] = []
 
@@ -217,7 +217,7 @@ def calcular_promedio_por_materia(tareas):
         suma = 0
 
         for nota in notas:
-            suma = suma + nota
+            suma += nota
 
         promedio = suma / len(notas)
         promedios[materia] = promedio
@@ -247,7 +247,7 @@ def calcular_promedio_general(tareas):
     for tarea in tareas:
         nota = tarea["nota"]
 
-        if nota is not None:
+        if nota != None:
             notas.append(nota)
 
     if len(notas) == 0:
@@ -282,7 +282,7 @@ def calcular_cantidad_pendientes(tareas):
 
     for tarea in tareas:
         if tarea["estado"] != "Completada":
-            cantidad = cantidad + 1
+            cantidad += 1
 
     return cantidad
 
@@ -305,7 +305,7 @@ def calcular_cantidad_completadas(tareas):
 
     for tarea in tareas:
         if tarea["estado"] == "Completada":
-            cantidad = cantidad + 1
+            cantidad += 1
 
     return cantidad
 
