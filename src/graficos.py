@@ -50,7 +50,7 @@ def grafico_tareas_por_materia(tareas):
         if materia not in tareas_por_materia:
             tareas_por_materia[materia] = 0
 
-        tareas_por_materia[materia] = tareas_por_materia[materia] + 1
+        tareas_por_materia[materia] += 1
 
     materias = []
     cantidades = []
@@ -99,9 +99,9 @@ def grafico_estado_tareas(tareas):
 
     for tarea in tareas:
         if tarea["estado"] == "Completada":
-            completadas = completadas + 1
+            completadas += 1
         else:
-            pendientes = pendientes + 1
+            pendientes += 1
 
     etiquetas = ["Pendientes", "Completadas"]
     cantidades = [pendientes, completadas]
@@ -147,11 +147,11 @@ def grafico_prioridades(tareas):
             prioridad = calcular_prioridad(tarea)
 
             if prioridad == "Alta":
-                cantidad_alta = cantidad_alta + 1
+                cantidad_alta += 1
             elif prioridad == "Media":
-                cantidad_media = cantidad_media + 1
+                cantidad_media += 1
             else:
-                cantidad_baja = cantidad_baja + 1
+                cantidad_baja += 1
 
     prioridades = ["Alta", "Media", "Baja"]
     cantidades = [cantidad_alta, cantidad_media, cantidad_baja]
@@ -198,10 +198,10 @@ def grafico_promedio_por_materia(tareas):
     materias = []
     notas = []
 
-    for materia in promedios:
+    for materia,promedio in promedios.items():
         materias.append(materia)
-        notas.append(promedios[materia])
-
+        notas.append(promedio)
+        
     plt.figure()
     plt.bar(materias, notas)
     plt.title("Promedio por materia")
