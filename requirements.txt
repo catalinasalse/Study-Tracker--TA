@@ -1,2 +1,3 @@
+# librerias necesarias para correr el programa
 pandas
 matplotlib
