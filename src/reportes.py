@@ -65,7 +65,7 @@ def mostrar_alertas_proximas(tareas):
 
 def mostrar_recomendaciones(tareas):
     """
-    Recomienda qué actividades estudiar primero.
+    Recomienda qué hacer con cada tarea
 
     La recomendación se basa en la prioridad, el riesgo de atraso
     y la comparación entre avance real y avance esperado.
@@ -155,7 +155,7 @@ def mostrar_metricas_generales(tareas):
     print(f"Cantidad de actividades completadas: {completadas}")
     print(f"Porcentaje de actividades completadas: {porcentaje_completadas}%")
 
-    if promedio_general is None:
+    if promedio_general == None:
         print("Promedio general: todavía no hay notas cargadas.")
     else:
         print(f"Promedio general: {promedio_general}")
@@ -166,8 +166,8 @@ def mostrar_metricas_generales(tareas):
     if len(promedios_materia) == 0:
         print("Todavía no hay notas cargadas por materia.")
     else:
-        for materia in promedios_materia:
-            print(f"{materia}: {promedios_materia[materia]}")
+        for materia,promedio_materia in promedios_materia.items():
+            print(f"{materia}: {promedio_materia}")
 
     print("---------------------------------------------")
 
